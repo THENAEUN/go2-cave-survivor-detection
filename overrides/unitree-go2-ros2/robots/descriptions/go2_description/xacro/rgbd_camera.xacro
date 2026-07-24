@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  
+  
+  
+  
+  
+
+  <joint name="rgbd_camera_joint" type="fixed">
+    <origin xyz="0.23 0.0 0.04" rpy="0 0 0"/>
+    <parent link="trunk"/>
+    <child link="rgbd_camera_link"/>
+  </joint>
+
+  <link name="rgbd_camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.06 0.05 0.04"/>
+      </geometry>
+      <material name="rgbd_camera_black">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.05"/>
+      <inertia
+        ixx="0.00002"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.00002"
+        iyz="0.0"
+        izz="0.00002"/>
+    </inertial>
+  </link>
+
+  
+  <joint name="rgbd_camera_optical_joint" type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="-1.57079632679 0 -1.57079632679"/>
+    <parent link="rgbd_camera_link"/>
+    <child link="rgbd_camera_optical_frame"/>
+  </joint>
+
+  <link name="rgbd_camera_optical_frame"/>
+
+  <gazebo reference="rgbd_camera_link">
+    <material>Gazebo/Black</material>
+
+    <sensor name="rgbd_camera_sensor" type="depth">
+      <always_on>true</always_on>
+      <update_rate>5.0</update_rate>
+      <visualize>false</visualize>
+
+      <camera name="rgbd">
+        <horizontal_fov>1.3962634</horizontal_fov>
+
+        <image>
+          <width>320</width>
+          <height>240</height>
+          <format>R8G8B8</format>
+        </image>
+
+        <clip>
+          <near>0.15</near>
+          <far>20.0</far>
+        </clip>
+
+        <distortion>
+          <k1>0.0</k1>
+          <k2>0.0</k2>
+          <k3>0.0</k3>
+          <p1>0.0</p1>
+          <p2>0.0</p2>
+          <center>0.5 0.5</center>
+        </distortion>
+      </camera>
+
+      <plugin
+        name="rgbd_camera_plugin"
+        filename="libgazebo_ros_camera.so">
+
+        <ros>
+          <namespace>/camera</namespace>
+        </ros>
+
+        <camera_name>rgbd</camera_name>
+        <frame_name>rgbd_camera_optical_frame</frame_name>
+
+        <hack_baseline>0.05</hack_baseline>
+        <min_depth>0.15</min_depth>
+        <max_depth>20.0</max_depth>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>

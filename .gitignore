@@ -1,0 +1,41 @@
+# ROS2 build outputs
+build/
+install/
+log/
+
+# Python environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# YOLO outputs and weights
+*.pt
+*.onnx
+runs/
+
+# ROS bag files
+*.bag
+*.db3
+metadata.yaml
+
+# Gazebo cache and logs
+.gazebo/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*~

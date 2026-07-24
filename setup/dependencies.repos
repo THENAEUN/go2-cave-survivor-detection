@@ -1,0 +1,10 @@
+repositories:
+  unitree-go2-ros2:
+    type: git
+    url: https://github.com/anujjain-dev/unitree-go2-ros2.git
+    version: fdac259518930c8f03e79189c4d0fdd00fc47483
+
+  gazebo_cave_world:
+    type: git
+    url: https://github.com/LTU-RAI/gazebo_cave_world.git
+    version: 62ed2f33a65e39486a78aae42b5ab1ddbc954dfb
